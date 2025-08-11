@@ -14,6 +14,21 @@ const authController = {
         } catch (error) {
             res.status(400).json({message: error.message || error})
         }
+    },
+    login: async (req, res) =>{
+        try {
+            const {name, password} = req.body;
+             if(
+                !name ||
+                !password
+            ){
+                return res.status(400).json('params required')
+            }
+            const response = await authService.loginService({name, password});
+            res.status(200).json({message: response})
+        } catch (error) {
+            res.status(400).json({message: error.message || error})
+        }
     }
 }
 
