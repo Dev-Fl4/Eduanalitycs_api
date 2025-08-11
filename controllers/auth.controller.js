@@ -12,7 +12,7 @@ const authController = {
             const response = await authService.registerService({name, password});
             res.status(201).json({message: response})
         } catch (error) {
-            res.status(400).json({message: error.message})
+            res.status(400).json({message: error.message || error})
         }
     }
 }
