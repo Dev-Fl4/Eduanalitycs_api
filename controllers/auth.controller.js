@@ -29,6 +29,14 @@ const authController = {
         } catch (error) {
             res.status(400).json({message: error.message || error})
         }
+    },
+    getGroups: async (req, res) =>{
+        try {
+            const response = await authService.getGroupsService();
+            res.status(200).json({data: response})
+        } catch (error) {
+            res.status(400).json({message: error.message || error})
+        }
     }
 }
 

@@ -32,6 +32,17 @@ const authService = {
         } catch (error) {
             throw error
         }
+    },
+    getGroupsService: async () =>{
+        try {
+            const [rows] = await connection.execute('SELECT * FROM grupos');
+            if(rows.length === 0){
+                throw 'Theres not groups'
+            }
+            return rows
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
