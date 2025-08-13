@@ -17,6 +17,11 @@ app.get('/', (req, res) =>{
 import authRoutes from './routes/auth.routes.js';
 app.use('/auth', authRoutes)
 
+import dataRoutes from './routes/data.routes.js';
+app.use('/data', dataRoutes)
+
+import setDataRoutes from './routes/setdata.routes.js';
+app.use('/set', setDataRoutes)
 app.listen(PORT, () => {
     console.log(`Server running port: ${PORT}`)
 })

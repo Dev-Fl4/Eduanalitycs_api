@@ -4,6 +4,5 @@ const authRoutes = express.Router();
 
 authRoutes.post('/register', authController.register)
 authRoutes.post('/login', authController.login)
-authRoutes.get('/groups', authController.getGroups)
 
 export default authRoutes;

@@ -1,4 +1,5 @@
 import authService from "../services/auth.service.js";
+
 const authController = {
     register: async (req, res) =>{
         try {
@@ -26,14 +27,6 @@ const authController = {
             }
             const response = await authService.loginService({name, password});
             res.status(200).json({message: response})
-        } catch (error) {
-            res.status(400).json({message: error.message || error})
-        }
-    },
-    getGroups: async (req, res) =>{
-        try {
-            const response = await authService.getGroupsService();
-            res.status(200).json({data: response})
         } catch (error) {
             res.status(400).json({message: error.message || error})
         }
