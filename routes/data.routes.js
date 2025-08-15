@@ -9,7 +9,6 @@ dataRoutes
 .get('/student', verifyToken, dataController.getStudentData)
 .get('/grades', verifyToken, dataController.getGrades)
 .get('/teacher', verifyToken, dataController.getTeacher)
-.get('/globalgrades', verifyToken, dataController.getGlobalGrades)
 .get('/groupstudents', verifyToken, dataController.getGroupStudents)
 .get('/groupgrades', verifyToken, dataController.getGroupGrades)
 

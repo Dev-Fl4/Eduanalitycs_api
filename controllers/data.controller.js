@@ -4,7 +4,6 @@ import {
   getStudentDataService,
   getGradesService,
   getTeacherService,
-  getGlobalGradesService,
   getGroupGradesService,
 } from "../services/data.service.js";
 
@@ -73,16 +72,6 @@ const dataController = {
       if (response.length === 0)
         return res.status(200).json({ data: "Teacher not found" });
       res.status(200).json({ data: { name: response[0].name } });
-    } catch (error) {
-      res.status(400).json({ error: error.message || error });
-    }
-  },
-  getGlobalGrades: async (req, res) => {
-    try {
-      const response = await getGlobalGradesService.makeRequest();
-      if (response.length === 0)
-        return res.status(200).json({ data: "Theres not grades" });
-      res.status(200).json({ data: response });
     } catch (error) {
       res.status(400).json({ error: error.message || error });
     }
