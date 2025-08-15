@@ -14,7 +14,7 @@ export const getTeacherService = new Service(
   "SELECT * FROM teacher WHERE teacher.id = ?"
 );
 export const getGroupGradesService = new Service(`SELECT n.grade
-FROM grades AS n
+FROM grade AS n
 JOIN student AS u ON n.student_id = u.id
 JOIN grupos AS g ON u.grupo_id = g.id
 WHERE g.id = ?`);
