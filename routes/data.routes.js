@@ -11,5 +11,6 @@ dataRoutes
 .get('/teacher', verifyToken, dataController.getTeacher)
 .get('/globalgrades', verifyToken, dataController.getGlobalGrades)
 .get('/groupstudents', verifyToken, dataController.getGroupStudents)
+.get('/groupgrades', verifyToken, dataController.getGroupGrades)
 
 export default dataRoutes;

@@ -5,6 +5,7 @@ import {
   getGradesService,
   getTeacherService,
   getGlobalGradesService,
+  getGroupGradesService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -26,7 +27,9 @@ const dataController = {
       getGroupStudentsService.data = { grupo_id };
       const response = await getGroupStudentsService.makeRequest();
       if (response.length === 0)
-        return res.status(200).json({ data: "Theres not students in this group" });
+        return res
+          .status(200)
+          .json({ data: "Theres not students in this group" });
       res.status(200).json({ data: response });
     } catch (error) {
       res.status(400).json({ error: error.message || error });
@@ -79,6 +82,18 @@ const dataController = {
       const response = await getGlobalGradesService.makeRequest();
       if (response.length === 0)
         return res.status(200).json({ data: "Theres not grades" });
+      res.status(200).json({ data: response });
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  },
+  getGroupGrades: async (req, res) => {
+    try {
+      const grupo_id = req.query;
+      if (!grupo_id)
+        return res.status(400).json({ message: "grupo_id required" });
+      getGroupGradesService.data = { grupo_id };
+      const response = await getGroupGradesService.makeRequest();
       res.status(200).json({ data: response });
     } catch (error) {
       res.status(400).json({ error: error.message || error });
