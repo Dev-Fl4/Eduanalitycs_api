@@ -89,7 +89,7 @@ const dataController = {
   },
   getGroupGrades: async (req, res) => {
     try {
-      const grupo_id = req.query;
+      const {grupo_id} = req.query;
       if (!grupo_id)
         return res.status(400).json({ message: "grupo_id required" });
       getGroupGradesService.data = { grupo_id };
