@@ -18,3 +18,13 @@ FROM grade AS n
 JOIN student AS u ON n.student_id = u.id
 JOIN grupos AS g ON u.grupo_id = g.id
 WHERE g.id = ?`);
+export const getSubjectGradesService = new Service(
+  `SELECT * FROM grade WHERE grade.subject = ?`
+);
+export const getSubjectGroupGradesService = new Service(`
+  SELECT n.grade
+  FROM grade AS n
+  JOIN student AS u ON n.student_id = u.id
+  JOIN grupos AS g ON u.grupo_id = g.id
+  WHERE g.id = ? AND n.subject = ?
+`);

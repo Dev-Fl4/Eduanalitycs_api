@@ -5,6 +5,8 @@ import {
   getGradesService,
   getTeacherService,
   getGroupGradesService,
+  getSubjectGradesService,
+  getSubjectGroupGradesService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -88,6 +90,28 @@ const dataController = {
       res.status(400).json({ error: error.message || error });
     }
   },
+  getSubjectGrades: async (req, res) =>{
+    try {
+      const {subject} = req.query;
+      if(!subject)return res.status(400).json({message: 'subject required'});
+      getSubjectGradesService.data = {subject};
+      const response = await getSubjectGradesService.makeRequest();
+      res.status(200).json({data: response})
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  },
+  getSubjectGroupGrades: async (req, res) =>{
+    try {
+      const {grupo_id, subject} = req.query;
+      if(!grupo_id || !subject)return res.status(400).json({message: 'subject or grupo_id required'});
+      getSubjectGroupGradesService.data = {grupo_id, subject};
+      const response = await getSubjectGroupGradesService.makeRequest();
+      res.status(200).json({data: response})
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  }
 };
 
 export default dataController;
