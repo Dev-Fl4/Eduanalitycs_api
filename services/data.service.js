@@ -39,7 +39,7 @@ WHERE g.id = ?                 -- ← aquí pasas el id del grupo
 GROUP BY g.id, g.name;
 `);
 export const getSubjectAverageService = new Service(`
-SELECT subject, AVG(grade) AS promedio
-FROM grade
-WHERE grade.subject = ?;
-  `);
+  SELECT AVG(grade) AS promedio
+  FROM grade
+  WHERE grade.subject = ?;
+`);
