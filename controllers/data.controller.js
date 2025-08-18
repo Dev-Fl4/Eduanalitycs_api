@@ -129,6 +129,18 @@ const dataController = {
       res.status(400).json({ error: error.message || error });
     }
   },
+  getSubjectAverage: async (req, res) =>{
+    try {
+      const { subject } = req.query;
+      if (!subject)
+        return res.status(400).json({ message: "subject required" });
+      getSubjectAverage.data = { subject };
+      const response = await getSubjectAverage.makeRequest();
+      res.status(200).json({ data: response });
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  }
 };
 
 export default dataController;
