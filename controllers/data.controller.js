@@ -8,6 +8,7 @@ import {
   getSubjectGradesService,
   getSubjectGroupGradesService,
   getGroupAverageService,
+  getSubjectAverageService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -134,8 +135,8 @@ const dataController = {
       const { subject } = req.query;
       if (!subject)
         return res.status(400).json({ message: "subject required" });
-      getSubjectAverage.data = { subject };
-      const response = await getSubjectAverage.makeRequest();
+      getSubjectAverageService.data = { subject };
+      const response = await getSubjectAverageService.makeRequest();
       res.status(200).json({ data: response });
     } catch (error) {
       res.status(400).json({ error: error.message || error });
