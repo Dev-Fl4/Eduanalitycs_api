@@ -1,4 +1,7 @@
 import { setGradeService, setStudentService } from "../services/setdata.service.js";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 const setDataController = {
   setStudent: async (req, res) => {
     try {
@@ -24,6 +27,18 @@ const setDataController = {
       res.status(400).json({ error: error.message || error });
     }
   },
+  verifyToken: async (req, res) =>{
+    try {
+      const {token} = req.query;
+      if(!token){
+        return res.status(400).json({message: "token required"})
+      }
+      const validToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      return res.status(200).json({isValid: validToken})
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  }
 };
 
 

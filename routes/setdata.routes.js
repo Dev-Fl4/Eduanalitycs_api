@@ -7,5 +7,6 @@ const setDataRoutes = express.Router();
 setDataRoutes
 .post('/student', verifyToken, setDataController.setStudent)
 .post('/grade', verifyToken,  setDataController.setGrade)
+.post('/verify', setDataController.verifyToken)
 
 export default setDataRoutes;
