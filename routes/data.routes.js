@@ -15,5 +15,6 @@ dataRoutes
 .get('/subjectgroupgrades', verifyToken, dataController.getSubjectGroupGrades)
 .get('/groupaverage', verifyToken, dataController.getGroupAverage)
 .get('/subjectaverage', verifyToken, dataController.getSubjectAverage)
+.get('/groupsubjectaverage', verifyToken, dataController.getGroupSubjectAverage)
 
 export default dataRoutes;

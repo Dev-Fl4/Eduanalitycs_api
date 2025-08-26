@@ -43,3 +43,12 @@ export const getSubjectAverageService = new Service(`
   FROM grade
   WHERE grade.subject = ?;
 `);
+export const getGroupSubjectAverageService = new Service(
+  `
+SELECT AVG(g.grade) AS promedio
+FROM grade AS g
+JOIN student AS s ON s.id = g.student_id
+WHERE g.subject = ?    
+  AND s.grupo_id = ?;  
+  `
+);

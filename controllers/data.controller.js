@@ -9,6 +9,7 @@ import {
   getSubjectGroupGradesService,
   getGroupAverageService,
   getSubjectAverageService,
+  getGroupSubjectAverageService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -138,6 +139,17 @@ const dataController = {
       getSubjectAverageService.data = { subject };
       const response = await getSubjectAverageService.makeRequest();
       res.status(200).json({ data: response });
+    } catch (error) {
+      res.status(400).json({ error: error.message || error });
+    }
+  },
+  getGroupSubjectAverage: async (req, res) =>{
+    try {
+      const {subject, grupo_id} = req.query;
+      if(!subject || !grupo_id)return res.status(400).json({ message: "subject or grupo_id required" });
+      getGroupSubjectAverageService.data = {subject:subject, grupo_id:grupo_id};
+      const response = await getGroupSubjectAverageService.makeRequest();
+      res.status(200).json({data: response})
     } catch (error) {
       res.status(400).json({ error: error.message || error });
     }
