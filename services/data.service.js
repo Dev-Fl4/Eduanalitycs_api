@@ -54,4 +54,7 @@ WHERE g.subject = ?
 );
 export const getStudentGradesService = new Service(`
   SELECT * FROM grade WHERE grade.student_id = ?;
+  `);
+export const getStudentAverageService = new Service(`
+  SELECT AVG(grade) AS promedio FROM grade WHERE grade.student_id = ?
   `)

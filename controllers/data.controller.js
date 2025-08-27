@@ -11,6 +11,7 @@ import {
   getSubjectAverageService,
   getGroupSubjectAverageService,
   getStudentGradesService,
+  getStudentAverageService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -170,9 +171,20 @@ const dataController = {
       const response = await getStudentGradesService.makeRequest();
       res.status(200).json({data: response})
     } catch (error) {
-      res.status(200).json({ error: error.message || error });
+      res.status(400).json({ error: error.message || error });
     }
   },
+  getStudentAverage: async (req, res) =>{
+    try {
+      const { student_id} = req.query;
+      if(!student_id)return res.status(400).json({message: "student_id required"});
+      getStudentAverageService.data = {student_id};
+      const response = await getStudentAverageService.makeRequest();
+      res.status(200).json({data: response})
+    } catch (error) {
+      res.status(400).json({ error: error.message || error})
+    }
+  }
 };
 
 export default dataController;
