@@ -52,3 +52,6 @@ WHERE g.subject = ?
   AND s.grupo_id = ?;  
   `
 );
+export const getStudentGradesService = new Service(`
+  SELECT * FROM grade WHERE grade.student_id = ?;
+  `)

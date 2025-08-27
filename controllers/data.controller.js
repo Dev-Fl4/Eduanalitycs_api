@@ -10,6 +10,7 @@ import {
   getGroupAverageService,
   getSubjectAverageService,
   getGroupSubjectAverageService,
+  getStudentGradesService,
 } from "../services/data.service.js";
 
 const dataController = {
@@ -131,7 +132,7 @@ const dataController = {
       res.status(400).json({ error: error.message || error });
     }
   },
-  getSubjectAverage: async (req, res) =>{
+  getSubjectAverage: async (req, res) => {
     try {
       const { subject } = req.query;
       if (!subject)
@@ -143,17 +144,35 @@ const dataController = {
       res.status(400).json({ error: error.message || error });
     }
   },
-  getGroupSubjectAverage: async (req, res) =>{
+  getGroupSubjectAverage: async (req, res) => {
     try {
-      const {subject, grupo_id} = req.query;
-      if(!subject || !grupo_id)return res.status(400).json({ message: "subject or grupo_id required" });
-      getGroupSubjectAverageService.data = {subject:subject, grupo_id:grupo_id};
+      const { subject, grupo_id } = req.query;
+      if (!subject || !grupo_id)
+        return res
+          .status(400)
+          .json({ message: "subject or grupo_id required" });
+      getGroupSubjectAverageService.data = {
+        subject: subject,
+        grupo_id: grupo_id,
+      };
       const response = await getGroupSubjectAverageService.makeRequest();
-      res.status(200).json({data: response})
+      res.status(200).json({ data: response });
     } catch (error) {
       res.status(400).json({ error: error.message || error });
     }
-  }
+  },
+  getStudentGrades: async (req, res) => {
+    try {
+      const { student_id } = req.query;
+      if (!student_id)
+        return res.status(400).json({ message: "student_id required" });
+      getStudentGradesService.data = {student_id};
+      const response = await getStudentGradesService.makeRequest();
+      res.status(200).json({data: response})
+    } catch (error) {
+      res.status(200).json({ error: error.message || error });
+    }
+  },
 };
 
 export default dataController;
